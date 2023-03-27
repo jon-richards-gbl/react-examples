@@ -8,12 +8,28 @@ import {
 import LazyPageWrapper from "../../lib/components/LazyPageWrapper";
 import App from "../App";
 
-const LoginPage = React.lazy(() => import("../../modules/auth/components/LoginPage"));
+const LoginPage = React.lazy(
+  () => import("../../modules/auth/components/LoginPage")
+);
+const CategoryPage = React.lazy(
+  () => import("../../modules/products/components/CategoryPage")
+);
+const ProductPage = React.lazy(
+  () => import("../../modules/products/components/ProductPage")
+);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="/login" element={<LazyPageWrapper page={LoginPage} />} />
+      <Route
+        path="/category/:slug"
+        element={<LazyPageWrapper page={CategoryPage} />}
+      />
+      <Route
+        path="/product/:id/:slug"
+        element={<LazyPageWrapper page={ProductPage} />}
+      />
     </Route>
   )
 );

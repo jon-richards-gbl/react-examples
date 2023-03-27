@@ -2,6 +2,7 @@ import axios, { AxiosRequestConfig, Method } from "axios";
 
 import { authService } from "../../modules/auth/services/authService";
 
+// https://fakestoreapi.com/docs
 const baseURL = "https://fakestoreapi.com/";
 
 const axiosInstance = axios.create({
@@ -31,10 +32,12 @@ async function baseRequest<Res>(
   return response.data;
 }
 
-type ServiceRequest = <Res = unknown, Data = unknown>(
-  url: string,
-  config: AxiosRequestConfig<Data>
-) => Promise<Res>;
+interface ServiceRequest {
+  <Res = unknown, Data = unknown>(
+    url: string,
+    config?: AxiosRequestConfig<Data>
+  ): Promise<Res>;
+}
 
 interface ApiService {
   get: ServiceRequest;
