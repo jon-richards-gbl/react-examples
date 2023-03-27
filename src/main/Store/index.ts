@@ -1,9 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { RootState } from "../types/store";
+
+import { RootState } from "../../lib/types/store";
+import authReducer from "../../modules/auth/store/reducer";
 
 export const createStore = () =>
   configureStore<RootState>({
-    reducer: {},
+    reducer: {
+      auth: authReducer,
+    },
   });
 
 const store = createStore();

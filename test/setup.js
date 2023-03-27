@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom";
 import matchers from "@testing-library/jest-dom/matchers";
 import { cleanup } from "@testing-library/react";
-import "jest-styled-components";
 
 // extends Vitest's expect method with methods from react-testing-library
 expect.extend(matchers);

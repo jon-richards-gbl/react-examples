@@ -1,11 +1,14 @@
 import { Outlet } from "react-router-dom";
 
+import AppHeader from "./Header";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Vite + React</h1>
+    <main>
+      <AppHeader />
+      <hr/>
       <Outlet />
-    </div>
+    </main>
   );
 }
 
