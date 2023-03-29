@@ -1,15 +1,16 @@
 import capitalize from "lodash/capitalize";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, generatePath } from "react-router-dom";
 
 import Card from "../../../../lib/components/Card";
+import { PageRoutes } from "../../../../lib/constants/pageRoutes";
 
 interface CategoryTileProps {
   categoryName: string;
 }
 
 const CategoryTile: React.FC<CategoryTileProps> = ({ categoryName }) => {
-  const link = `/category/${categoryName}`;
+  const link = generatePath(PageRoutes.CategoryPage, { slug: categoryName });
 
   return (
     <Card
@@ -18,7 +19,9 @@ const CategoryTile: React.FC<CategoryTileProps> = ({ categoryName }) => {
       link={link}
     >
       <Link to={link}>
-        <h3>{capitalize(categoryName)}</h3>
+        <h3 className="text-xl font-medium leading-tight">
+          {capitalize(categoryName)}
+        </h3>
       </Link>
     </Card>
   );

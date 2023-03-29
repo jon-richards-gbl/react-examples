@@ -3,14 +3,12 @@ import React, { Suspense } from "react";
 import ErrorBoundary from "../ErrorBoundary";
 
 interface LazyPageWrapperProps {
-  page: React.LazyExoticComponent<React.FC>;
+  page: React.ReactNode;
 }
 
-const LazyPageWrapper: React.FC<LazyPageWrapperProps> = ({ page: Page }) => (
+const LazyPageWrapper: React.FC<LazyPageWrapperProps> = ({ page }) => (
   <ErrorBoundary>
-    <Suspense>
-      <Page />
-    </Suspense>
+    <Suspense>{page}</Suspense>
   </ErrorBoundary>
 );
 

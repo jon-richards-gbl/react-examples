@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { PageRoutes } from "../../../../lib/constants/pageRoutes";
 import { useAppDispatch, useAppSelector } from "../../../../lib/hooks";
 import { logout } from "../../store/reducer";
 import { selectLoggedInUser } from "../../store/selectors";
@@ -13,7 +14,10 @@ const LoginButton: React.FC = () => {
 
   if (!loggedInUser)
     return (
-      <Link className="p-2 block bg-neutral-200 rounded mx-2" to="/login">
+      <Link
+        className="p-2 block bg-neutral-200 rounded mx-2"
+        to={PageRoutes.LoginPage}
+      >
         Log In
       </Link>
     );

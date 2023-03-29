@@ -1,9 +1,10 @@
 import capitalize from "lodash/capitalize";
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, generatePath } from "react-router-dom";
 
 import reactIcon from "../../../assets/react.svg";
+import { PageRoutes } from "../../../lib/constants/pageRoutes";
 import LoginButton from "../../../modules/auth/components/LoginButton";
 import { selectCategoryNames } from "../../../modules/products/store/selectors";
 
@@ -25,7 +26,7 @@ const AppHeader: React.FC = () => {
           <Link
             className="p-2 text-white hover:text-neutral-200"
             key={category}
-            to={`/category/${category}`}
+            to={generatePath(PageRoutes.CategoryPage, { slug: category })}
           >
             {capitalize(category)}
           </Link>

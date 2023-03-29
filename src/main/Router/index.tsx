@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import LazyPageWrapper from "../../lib/components/LazyPageWrapper";
+import { PageRoutes } from "../../lib/constants/pageRoutes";
 import App from "../App";
 
 const LoginPage = React.lazy(
@@ -23,16 +24,19 @@ const LandingPage = React.lazy(
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<App />}>
-      <Route index element={<LazyPageWrapper page={LandingPage} />} />
-      <Route path="/login" element={<LazyPageWrapper page={LoginPage} />} />
+    <Route path={PageRoutes.LandingPage} element={<App />}>
+      <Route index element={<LazyPageWrapper page={<LandingPage />} />} />
       <Route
-        path="/category/:slug"
-        element={<LazyPageWrapper page={CategoryPage} />}
+        path={PageRoutes.LoginPage}
+        element={<LazyPageWrapper page={<LoginPage />} />}
       />
       <Route
-        path="/product/:id/:slug"
-        element={<LazyPageWrapper page={ProductPage} />}
+        path={PageRoutes.CategoryPage}
+        element={<LazyPageWrapper page={<CategoryPage />} />}
+      />
+      <Route
+        path={PageRoutes.ProductPage}
+        element={<LazyPageWrapper page={<ProductPage />} />}
       />
     </Route>
   )
