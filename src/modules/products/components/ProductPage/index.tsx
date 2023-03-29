@@ -1,10 +1,16 @@
 import React, { useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
+import LoadingPage from "../../../../lib/components/LoadingPage";
+import NotFoundPage from "../../../../lib/components/NotFoundPage";
+import Page from "../../../../lib/components/Page";
 import { slugify } from "../../../../lib/helpers/util";
 import { useAppDispatch, useAppSelector } from "../../../../lib/hooks";
 import { fetchItemById } from "../../store/actions";
-import { selectProductById } from "../../store/selectors";
+import {
+  selectIsProductsLoading,
+  selectProductById,
+} from "../../store/selectors";
 
 type ProductParams = {
   id: string | undefined;
@@ -14,7 +20,9 @@ const ProductPage: React.FC = () => {
   const { id } = useParams<ProductParams>();
 
   const dispatch = useAppDispatch();
+
   const product = useAppSelector(selectProductById(id));
+  const isLoading = useAppSelector(selectIsProductsLoading);
 
   useEffect(() => {
     if (id) {
@@ -22,17 +30,19 @@ const ProductPage: React.FC = () => {
     }
   }, [id]);
 
-  if (!product) return <div>Loading...</div>;
+  if (isLoading) return <LoadingPage />;
+  if (!product) return <NotFoundPage />;
+
+  const breadCrumbs = [
+    { name: product.category, url: `/category/${slugify(product.category)}` },
+  ];
 
   return (
-    <section>
-      <header>
-        <Link to={`/category/${slugify(product.category)}`}>Back</Link>
-        <h1>{product.title}</h1>
-      </header>
+    <Page.Container>
+      <Page.Header title={product.title} breadCrumbs={breadCrumbs} />
       <img alt={`Photo of ${product.title}`} src={product.image} height="300" />
       <p>{product.description}</p>
-    </section>
+    </Page.Container>
   );
 };
 

@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import { Provider as StoreProvider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 
-import "../assets/mvp.css";
 import router from "./Router";
 import store from "./Store";
 

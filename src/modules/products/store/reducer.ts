@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 import { ProductsState } from "../types/products";
 import {
-  fetchCategories,
+  fetchCategoryNames,
   fetchItemById,
   fetchItemsByCategory,
 } from "./actions";
@@ -10,6 +10,7 @@ import {
 const createInitialProductsState = (): ProductsState => ({
   isLoading: false,
   categories: {},
+  categoryNames: [],
   products: {},
 });
 
@@ -18,12 +19,12 @@ const productsSlice = createSlice({
   initialState: createInitialProductsState(),
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchCategories.pending, (state) => {
+    builder.addCase(fetchCategoryNames.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(fetchCategories.fulfilled, (state, action) => {
+    builder.addCase(fetchCategoryNames.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.categories = action.payload;
+      state.categoryNames = action.payload;
     });
 
     builder.addCase(fetchItemsByCategory.pending, (state) => {
@@ -31,7 +32,7 @@ const productsSlice = createSlice({
     });
     builder.addCase(fetchItemsByCategory.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.categories[action.payload.url] = action.payload;
+      state.categories[action.payload.name] = action.payload;
     });
 
     builder.addCase(fetchItemById.pending, (state) => {

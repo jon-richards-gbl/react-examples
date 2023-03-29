@@ -11,15 +11,15 @@ const LoginButton: React.FC = () => {
 
   const handleOnClickLogout = () => dispatch(logout());
 
-  if (!loggedInUser) {
-    return <Link to="/login">Log In</Link>;
-  }
+  if (!loggedInUser) return <Link to="/login">Log In</Link>;
 
   return (
-    <button type="button" onClick={handleOnClickLogout}>
+    <>
       <em>Logged in as {loggedInUser}</em>
-      Log Out
-    </button>
+      <button type="button" onClick={handleOnClickLogout}>
+        Log Out
+      </button>
+    </>
   );
 };
 

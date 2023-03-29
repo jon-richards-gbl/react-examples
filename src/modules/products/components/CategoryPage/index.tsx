@@ -1,10 +1,16 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import LoadingPage from "../../../../lib/components/LoadingPage";
+import NotFoundPage from "../../../../lib/components/NotFoundPage";
+import Page from "../../../../lib/components/Page";
 import { useAppDispatch, useAppSelector } from "../../../../lib/hooks";
 import { fetchItemsByCategory } from "../../store/actions";
-import { selectCategoryBySlug } from "../../store/selectors";
-import ProductTile from "./ProductTile";
+import {
+  selectCategoryBySlug,
+  selectIsProductsLoading,
+} from "../../store/selectors";
+import ProductTile from "../ProductTile";
 
 type CategoryParams = {
   slug: string | undefined;
@@ -14,8 +20,9 @@ const CategoryPage: React.FC = () => {
   const { slug } = useParams<CategoryParams>();
 
   const dispatch = useAppDispatch();
-  // todo loading
+
   const category = useAppSelector(selectCategoryBySlug(slug));
+  const isLoading = useAppSelector(selectIsProductsLoading);
 
   useEffect(() => {
     if (slug) {
@@ -23,17 +30,16 @@ const CategoryPage: React.FC = () => {
     }
   }, [slug]);
 
-  if (!category) return <div>Loading...</div>;
+  if (isLoading) return <LoadingPage />;
+  if (!category) return <NotFoundPage />;
 
   return (
-    <section>
-      <header>
-        <h1>{category.name}</h1>
-      </header>
+    <Page.Container>
+      <Page.Header title={category.name} />
       {category.products.map((product) => (
         <ProductTile key={product.id} product={product} />
       ))}
-    </section>
+    </Page.Container>
   );
 };
 

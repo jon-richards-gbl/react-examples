@@ -3,25 +3,25 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import LoginButton from "../../../modules/auth/components/LoginButton";
-import { selectCategories } from "../../../modules/products/store/selectors";
+import { selectCategoryNames } from "../../../modules/products/store/selectors";
 
 const AppHeader: React.FC = () => {
-  const categories = useSelector(selectCategories);
+  const categories = useSelector(selectCategoryNames);
 
   return (
-    <nav>
+    <header>
       <h3>Vite + React</h3>
-      <ul>
-        {categories.map((category) => (
-          <li key={category.url}>
-            <Link to={`/category/${category.url}`}>{category.name}</Link>
-          </li>
-        ))}
-        <li>
-          <LoginButton />
-        </li>
-      </ul>
-    </nav>
+      <nav>
+        <ul>
+          {categories.map((category) => (
+            <li key={category}>
+              <Link to={`/category/${category}`}>{category}</Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <LoginButton />
+    </header>
   );
 };
 
