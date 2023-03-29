@@ -6,8 +6,10 @@ import LoginForm from "../LoginForm";
 const LoginPage: React.FC = () => {
   return (
     <Page.Container>
-      <h2>Login to your account</h2>
-      <LoginForm />
+      <Page.Header title="Login to your account" centred />
+      <div className="p-4">
+        <LoginForm />
+      </div>
     </Page.Container>
   );
 };

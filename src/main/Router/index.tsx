@@ -17,10 +17,14 @@ const CategoryPage = React.lazy(
 const ProductPage = React.lazy(
   () => import("../../modules/products/components/ProductPage")
 );
+const LandingPage = React.lazy(
+  () => import("../../modules/products/components/LandingPage")
+);
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
+      <Route index element={<LazyPageWrapper page={LandingPage} />} />
       <Route path="/login" element={<LazyPageWrapper page={LoginPage} />} />
       <Route
         path="/category/:slug"

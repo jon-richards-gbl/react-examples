@@ -13,19 +13,21 @@ interface PageHeaderProps {
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({ title, breadCrumbs }) => (
-  <header>
+  <header className="border-b-2 border-neutral-200 mb-4 p-4">
     <nav>
-      <Link to="/">Home</Link>
+      <Link className="text-sky-300 hover:text-sky-600" to="/">
+        Home
+      </Link>
       {breadCrumbs?.map((link) => (
-        <>
-          <span>/</span>
-          <Link key={link.name} to={link.url}>
+        <React.Fragment key={link.name}>
+          <span className="mx-2 text-neutral-500">/</span>
+          <Link className="text-sky-300 hover:text-sky-600" to={link.url}>
             {link.name}
           </Link>
-        </>
+        </React.Fragment>
       ))}
     </nav>
-    <h2>{title}</h2>
+    <h2 className="text-4xl font-medium leading-tight">{title}</h2>
   </header>
 );
 

@@ -1,3 +1,4 @@
+import capitalize from "lodash/capitalize";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -34,14 +35,23 @@ const ProductPage: React.FC = () => {
   if (!product) return <NotFoundPage />;
 
   const breadCrumbs = [
-    { name: product.category, url: `/category/${slugify(product.category)}` },
+    {
+      name: capitalize(product.category),
+      url: `/category/${slugify(product.category)}`,
+    },
   ];
 
   return (
     <Page.Container>
       <Page.Header title={product.title} breadCrumbs={breadCrumbs} />
-      <img alt={`Photo of ${product.title}`} src={product.image} height="300" />
-      <p>{product.description}</p>
+      <article className="prose p-4">
+        <img
+          className="h-48"
+          alt={`Photo of ${product.title}`}
+          src={product.image}
+        />
+        <p>{product.description}</p>
+      </article>
     </Page.Container>
   );
 };

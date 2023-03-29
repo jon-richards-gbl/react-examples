@@ -4,7 +4,7 @@ interface PageContainerProps {
   children: React.ReactNode;
 }
 const PageContainer: React.FC<PageContainerProps> = ({ children }) => (
-  <section>{children}</section>
+  <section className="container p-4 mx-auto">{children}</section>
 );
 
 export default PageContainer;

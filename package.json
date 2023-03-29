@@ -20,9 +20,11 @@
     "react-router-dom": "^6.9.0"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.9",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
+    "@types/lodash": "^4.14.192",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "latest",
@@ -32,6 +34,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "latest",
     "eslint-plugin-react": "latest",
+    "lodash": "^4.17.21",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
     "tailwindcss": "^3.3.0",

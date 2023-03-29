@@ -1,7 +1,9 @@
+import capitalize from "lodash/capitalize";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
+import reactIcon from "../../../assets/react.svg";
 import LoginButton from "../../../modules/auth/components/LoginButton";
 import { selectCategoryNames } from "../../../modules/products/store/selectors";
 
@@ -9,16 +11,25 @@ const AppHeader: React.FC = () => {
   const categories = useSelector(selectCategoryNames);
 
   return (
-    <header>
-      <h3>Vite + React</h3>
+    <header className="py-2 flex justify-between bg-sky-800 items-center w-full shadow-md">
+      <h3 className="p-2 text-slate-300">
+        <img
+          className="h-4 inline pr-2 align-baseline"
+          src={reactIcon}
+          alt=""
+        />
+        Vite + React
+      </h3>
       <nav>
-        <ul>
-          {categories.map((category) => (
-            <li key={category}>
-              <Link to={`/category/${category}`}>{category}</Link>
-            </li>
-          ))}
-        </ul>
+        {categories.map((category) => (
+          <Link
+            className="p-2 text-white hover:text-neutral-200"
+            key={category}
+            to={`/category/${category}`}
+          >
+            {capitalize(category)}
+          </Link>
+        ))}
       </nav>
       <LoginButton />
     </header>

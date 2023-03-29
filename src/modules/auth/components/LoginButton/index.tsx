@@ -11,7 +11,12 @@ const LoginButton: React.FC = () => {
 
   const handleOnClickLogout = () => dispatch(logout());
 
-  if (!loggedInUser) return <Link to="/login">Log In</Link>;
+  if (!loggedInUser)
+    return (
+      <Link className="p-2 block bg-neutral-200 rounded mx-2" to="/login">
+        Log In
+      </Link>
+    );
 
   return (
     <>

@@ -1,3 +1,4 @@
+import capitalize from "lodash/capitalize";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -35,10 +36,12 @@ const CategoryPage: React.FC = () => {
 
   return (
     <Page.Container>
-      <Page.Header title={category.name} />
-      {category.products.map((product) => (
-        <ProductTile key={product.id} product={product} />
-      ))}
+      <Page.Header title={capitalize(category.name)} />
+      <div className="grid grid-cols-4 p-4">
+        {category.products.map((product) => (
+          <ProductTile key={product.id} product={product} />
+        ))}
+      </div>
     </Page.Container>
   );
 };
