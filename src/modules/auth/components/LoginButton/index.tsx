@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { PageRoutes } from "../../../../lib/constants/pageRoutes";
-import { useAppDispatch, useAppSelector } from "../../../../lib/hooks";
+import { PageRoutes } from "~/lib/constants/pageRoutes";
+import { useAppDispatch, useAppSelector } from "~/lib/hooks";
+
 import { logout } from "../../store/reducer";
 import { selectLoggedInUser } from "../../store/selectors";
 

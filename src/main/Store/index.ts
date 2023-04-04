@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { RootState } from "../../lib/types/store";
-import authReducer from "../../modules/auth/store/reducer";
-import productsReducer from "../../modules/products/store/reducer";
+import authReducer from "~/auth/store/reducer";
+import { RootState } from "~/lib/types/store";
+import productsReducer from "~/products/store/reducer";
 
 export const createStore = () =>
   configureStore<RootState>({

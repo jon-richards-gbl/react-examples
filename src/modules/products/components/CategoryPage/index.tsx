@@ -2,10 +2,11 @@ import capitalize from "lodash/capitalize";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import LoadingPage from "../../../../lib/components/LoadingPage";
-import NotFoundPage from "../../../../lib/components/NotFoundPage";
-import Page from "../../../../lib/components/Page";
-import { useAppDispatch, useAppSelector } from "../../../../lib/hooks";
+import LoadingPage from "~/lib/components/LoadingPage";
+import NotFoundPage from "~/lib/components/NotFoundPage";
+import Page from "~/lib/components/Page";
+import { useAppDispatch, useAppSelector } from "~/lib/hooks";
+
 import { fetchItemsByCategory } from "../../store/actions";
 import {
   selectCategoryBySlug,

@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, Method } from "axios";
 
-import { authService } from "../../modules/auth/services/authService";
+import { authService } from "~/auth/services/authService";
 
 // https://fakestoreapi.com/docs
 const baseURL = "https://fakestoreapi.com/";

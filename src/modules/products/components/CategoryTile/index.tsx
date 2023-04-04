@@ -2,8 +2,8 @@ import capitalize from "lodash/capitalize";
 import React from "react";
 import { Link, generatePath } from "react-router-dom";
 
-import Card from "../../../../lib/components/Card";
-import { PageRoutes } from "../../../../lib/constants/pageRoutes";
+import Card from "~/lib/components/Card";
+import { PageRoutes } from "~/lib/constants/pageRoutes";
 
 interface CategoryTileProps {
   categoryName: string;

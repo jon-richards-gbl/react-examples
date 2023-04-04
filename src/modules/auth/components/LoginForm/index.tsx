@@ -1,12 +1,14 @@
 import React, { useCallback } from "react";
 
-import TextInput from "../../../../lib/components/TextInput";
-import { useAppDispatch } from "../../../../lib/hooks";
+import TextInput from "~/lib/components/TextInput";
+import { useAppDispatch } from "~/lib/hooks";
+
 import { postLogin } from "../../store/actions";
 import { LoginRequest } from "../../types/store";
 
 const LoginForm: React.FC = () => {
   const dispatch = useAppDispatch();
+
   const handleSubmit: React.FormEventHandler = useCallback((e) => {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);

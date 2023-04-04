@@ -5,21 +5,20 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 
-import LazyPageWrapper from "../../lib/components/LazyPageWrapper";
-import { PageRoutes } from "../../lib/constants/pageRoutes";
+import LazyPageWrapper from "~/lib/components/LazyPageWrapper";
+import { PageRoutes } from "~/lib/constants/pageRoutes";
+
 import App from "../App";
 
-const LoginPage = React.lazy(
-  () => import("../../modules/auth/components/LoginPage")
-);
+const LoginPage = React.lazy(() => import("~/auth/components/LoginPage"));
 const CategoryPage = React.lazy(
-  () => import("../../modules/products/components/CategoryPage")
+  () => import("~/products/components/CategoryPage")
 );
 const ProductPage = React.lazy(
-  () => import("../../modules/products/components/ProductPage")
+  () => import("~/products/components/ProductPage")
 );
 const LandingPage = React.lazy(
-  () => import("../../modules/products/components/LandingPage")
+  () => import("~/products/components/LandingPage")
 );
 
 const router = createBrowserRouter(

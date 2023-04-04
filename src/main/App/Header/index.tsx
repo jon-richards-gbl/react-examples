@@ -3,10 +3,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, generatePath } from "react-router-dom";
 
-import reactIcon from "../../../assets/react.svg";
-import { PageRoutes } from "../../../lib/constants/pageRoutes";
-import LoginButton from "../../../modules/auth/components/LoginButton";
-import { selectCategoryNames } from "../../../modules/products/store/selectors";
+import reactIcon from "~/assets/react.svg";
+import LoginButton from "~/auth/components/LoginButton";
+import { PageRoutes } from "~/lib/constants/pageRoutes";
+import { selectCategoryNames } from "~/products/store/selectors";
 
 const AppHeader: React.FC = () => {
   const categories = useSelector(selectCategoryNames);

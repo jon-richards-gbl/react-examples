@@ -1,8 +1,9 @@
 import React from "react";
 
-import LoadingPage from "../../../../lib/components/LoadingPage";
-import Page from "../../../../lib/components/Page";
-import { useAppSelector } from "../../../../lib/hooks";
+import LoadingPage from "~/lib/components/LoadingPage";
+import Page from "~/lib/components/Page";
+import { useAppSelector } from "~/lib/hooks";
+
 import { selectCategoryNames } from "../../store/selectors";
 import CategoryTile from "../CategoryTile";
 

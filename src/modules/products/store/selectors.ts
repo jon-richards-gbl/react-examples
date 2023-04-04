@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-import { RootState } from "../../../lib/types/store";
+import { RootState } from "~/lib/types/store";
 
 const selectProductsState = (state: RootState) => state.products;
 

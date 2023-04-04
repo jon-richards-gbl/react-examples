@@ -2,8 +2,9 @@ import kebabCase from "lodash/kebabCase";
 import React from "react";
 import { Link, generatePath } from "react-router-dom";
 
-import Card from "../../../../lib/components/Card";
-import { PageRoutes } from "../../../../lib/constants/pageRoutes";
+import Card from "~/lib/components/Card";
+import { PageRoutes } from "~/lib/constants/pageRoutes";
+
 import { ProductStub } from "../../types/products";
 
 interface ProductTileProps {

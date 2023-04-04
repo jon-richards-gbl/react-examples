@@ -1,4 +1,5 @@
-import { apiService } from "../../../lib/helpers/apiService";
+import { apiService } from "~/lib/helpers/apiService";
+
 import { LoginRequest, LoginResponse } from "../types/store";
 
 enum Endpoints {

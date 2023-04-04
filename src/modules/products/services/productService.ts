@@ -1,4 +1,5 @@
-import { apiService } from "../../../lib/helpers/apiService";
+import { apiService } from "~/lib/helpers/apiService";
+
 import { ProductFull, ProductStub } from "../types/products";
 
 enum ProductEndpoints {
