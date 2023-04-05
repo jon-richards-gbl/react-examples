@@ -11,10 +11,13 @@ const LoginForm: React.FC = () => {
 
   const handleSubmit: React.FormEventHandler = useCallback((e) => {
     e.preventDefault();
+
+    // assertions because typescript cannot validate the form on its own
     const formData = new FormData(e.target as HTMLFormElement);
-    const loginRequest = Object.fromEntries(
-      formData.entries()
-    ) as unknown as LoginRequest;
+    const loginRequest: LoginRequest = {
+      username: formData.get("username") as string,
+      password: formData.get("password") as string,
+    };
 
     dispatch(postLogin(loginRequest));
   }, []);
