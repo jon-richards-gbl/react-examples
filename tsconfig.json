@@ -1,25 +1,28 @@
 {
   "compilerOptions": {
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": false,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
+    "target": "ESNext",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "module": "ESNext",
-    "moduleResolution": "Node",
-    "noEmit": true,
+    "skipLibCheck": true,
+
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
     "paths": {
-      "~/assets/*": ["src/assets/*"],
+      "~assets/*": ["src/assets/*"],
       "~/*": ["src/modules/*"]
     },
+
+    "moduleResolution": "Node",
+    "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
-    "skipLibCheck": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+
     "strict": true,
-    "target": "ESNext",
-    "types": ["vitest/globals", "@testing-library/jest-dom"],
-    "useDefineForClassFields": true
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

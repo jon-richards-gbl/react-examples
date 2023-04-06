@@ -20,6 +20,7 @@ export default defineConfig({
     alias: tsPathsToAliases(tsConfig.compilerOptions.paths),
   },
 
+  // https://vitest.dev/config/
   test: {
     globals: true,
     environment: "jsdom",

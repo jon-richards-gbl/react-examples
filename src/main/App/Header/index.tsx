@@ -2,8 +2,8 @@ import capitalize from "lodash/capitalize";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, generatePath } from "react-router-dom";
+import reactIcon from "~assets/react.svg";
 
-import reactIcon from "~/assets/react.svg";
 import LoginButton from "~/auth/components/LoginButton";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
 import { selectCategoryNames } from "~/products/store/selectors";
