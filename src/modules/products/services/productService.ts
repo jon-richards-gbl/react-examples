@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 
-import { apiService, storeApiBaseQuery } from "~/lib/helpers/apiService";
+import { storeApiBaseQuery } from "~/lib/helpers/apiService";
 
 import { Category, ProductFull, ProductStub } from "../types/products";
 
@@ -11,7 +11,7 @@ enum ProductEndpoints {
 }
 
 export const productApi = createApi({
-  reducerPath: "productApi",
+  reducerPath: "products",
   baseQuery: storeApiBaseQuery,
   endpoints: (builder) => ({
     getCategories: builder.query<string[], void>({
@@ -36,30 +36,10 @@ export const productApi = createApi({
   }),
 });
 
-export type ProductApiState = typeof productApi.reducer;
+export type ProductsState = typeof productApi.reducer;
+
 export const {
   useGetCategoriesQuery,
   useGetItemByIdQuery,
   useGetItemsByCategoryQuery,
 } = productApi;
-
-export const productService_OLD = {
-  getCategories: () => {
-    return apiService.get<string[]>(ProductEndpoints.GetCategories);
-  },
-
-  getItemsByCategory: (categoryName: string) => {
-    const endpoint = ProductEndpoints.GetCategory.replace(
-      "{categoryName}",
-      categoryName
-    );
-
-    return apiService.get<ProductStub[]>(endpoint);
-  },
-
-  getItemById: (productId: string) => {
-    const endpoint = ProductEndpoints.GetItem.replace("{productId}", productId);
-
-    return apiService.get<ProductFull>(endpoint);
-  },
-};

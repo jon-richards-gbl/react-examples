@@ -4,8 +4,6 @@ import LoadingPage from "~/lib/components/LoadingPage";
 import Page from "~/lib/components/Page";
 
 import { useGetCategoriesQuery } from "../../services/productService";
-// import { useAppSelector } from "~/lib/hooks";
-// import { selectCategoryNames } from "../../store/selectors";
 import CategoryTile from "../CategoryTile";
 
 const LandingPage: React.FC = () => {
