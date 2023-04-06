@@ -1,12 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { productService } from "../services/productService";
+import { productService_OLD } from "../services/productService";
 import { Category } from "../types/products";
 
 export const fetchCategoryNames = createAsyncThunk(
   "products/fetchCategories",
   async () => {
-    return productService.getCategories();
+    return productService_OLD.getCategories();
   }
 );
 
@@ -15,7 +15,7 @@ export const fetchItemsByCategory = createAsyncThunk(
   async (categoryName: string): Promise<Category> => {
     return {
       name: categoryName,
-      products: await productService.getItemsByCategory(categoryName),
+      products: await productService_OLD.getItemsByCategory(categoryName),
     };
   }
 );
@@ -23,6 +23,6 @@ export const fetchItemsByCategory = createAsyncThunk(
 export const fetchItemById = createAsyncThunk(
   "products/fetchItemById",
   async (id: string) => {
-    return productService.getItemById(id);
+    return productService_OLD.getItemById(id);
   }
 );

@@ -1,15 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import authReducer from "~/auth/store/reducer";
-import { RootState } from "~/lib/types/store";
+import { productApi } from "~/products/services/productService";
+// import { RootState } from "~/lib/types/store";
 import productsReducer from "~/products/store/reducer";
 
 export const createStore = () =>
-  configureStore<RootState>({
+  configureStore({
     reducer: {
       auth: authReducer,
       products: productsReducer,
+      productApi: productApi.reducer,
     },
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(productApi.middleware),
   });
 
 const store = createStore();

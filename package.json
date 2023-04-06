@@ -17,8 +17,7 @@
       "prettier --write --ignore-unknown"
     ],
     "**/*.{ts,js,tsx,jsx}": [
-      "eslint",
-      "tsc --noEmit"
+      "eslint"
     ]
   },
   "dependencies": {

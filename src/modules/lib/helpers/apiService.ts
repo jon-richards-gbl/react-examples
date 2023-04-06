@@ -1,12 +1,27 @@
+import { fetchBaseQuery } from "@reduxjs/toolkit/dist/query/react";
 import axios, { AxiosRequestConfig, Method } from "axios";
 
 import { authService } from "~/auth/services/authService";
+import { RootState } from "~/lib/types/store";
 
 // https://fakestoreapi.com/docs
-const baseURL = "https://fakestoreapi.com/";
+const baseUrl = "https://fakestoreapi.com/";
 
 const axiosInstance = axios.create({
-  baseURL,
+  baseURL: baseUrl,
+});
+
+export const storeApiBaseQuery = fetchBaseQuery({
+  baseUrl,
+  prepareHeaders: (headers, { getState }) => {
+    const token = (getState() as RootState).auth.loginToken;
+
+    if (token) {
+      headers.set("authorization", `Bearer ${token}`);
+    }
+
+    return headers;
+  },
 });
 
 async function baseRequest<Res>(
