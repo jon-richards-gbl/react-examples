@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { logout } from "~/auth/store/reducer";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
 import { useAppDispatch, useAppSelector } from "~/lib/hooks";
 
-import { logout } from "../../store/reducer";
 import { selectLoggedInUser } from "../../store/selectors";
 
 const LoginButton: React.FC = () => {
@@ -16,7 +16,7 @@ const LoginButton: React.FC = () => {
   if (!loggedInUser)
     return (
       <Link
-        className="p-2 block bg-neutral-200 rounded mx-2"
+        className="p-2 block bg-neutral-200 rounded mx-2 text-neutral-800"
         to={PageRoutes.LoginPage}
       >
         Log In
@@ -24,12 +24,16 @@ const LoginButton: React.FC = () => {
     );
 
   return (
-    <>
+    <div className="flex items-center">
       <em>Logged in as {loggedInUser}</em>
-      <button type="button" onClick={handleOnClickLogout}>
+      <button
+        type="button"
+        onClick={handleOnClickLogout}
+        className="p-2 block bg-neutral-200 rounded mx-2 text-neutral-800"
+      >
         Log Out
       </button>
-    </>
+    </div>
   );
 };
 

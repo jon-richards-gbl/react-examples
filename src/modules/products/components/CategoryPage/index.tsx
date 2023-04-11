@@ -1,17 +1,12 @@
 import capitalize from "lodash/capitalize";
-import React, { useEffect } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 
 import LoadingPage from "~/lib/components/LoadingPage";
 import NotFoundPage from "~/lib/components/NotFoundPage";
 import Page from "~/lib/components/Page";
-import { useAppDispatch, useAppSelector } from "~/lib/hooks";
 
-import { fetchItemsByCategory } from "../../store/actions";
-import {
-  selectCategoryBySlug,
-  selectIsProductsLoading,
-} from "../../store/selectors";
+import { useGetItemsByCategoryQuery } from "../../services/productService";
 import ProductTile from "../ProductTile";
 
 type CategoryParams = {
@@ -19,18 +14,9 @@ type CategoryParams = {
 };
 
 const CategoryPage: React.FC = () => {
-  const { slug } = useParams<CategoryParams>();
+  const { slug = "" } = useParams<CategoryParams>();
 
-  const dispatch = useAppDispatch();
-
-  const category = useAppSelector(selectCategoryBySlug(slug));
-  const isLoading = useAppSelector(selectIsProductsLoading);
-
-  useEffect(() => {
-    if (slug) {
-      dispatch(fetchItemsByCategory(slug));
-    }
-  }, [slug]);
+  const { isLoading, data: category } = useGetItemsByCategoryQuery(slug);
 
   if (isLoading) return <LoadingPage />;
   if (!category) return <NotFoundPage />;

@@ -2,15 +2,14 @@ import React from "react";
 
 import LoadingPage from "~/lib/components/LoadingPage";
 import Page from "~/lib/components/Page";
-import { useAppSelector } from "~/lib/hooks";
 
-import { selectCategoryNames } from "../../store/selectors";
+import { useGetCategoriesQuery } from "../../services/productService";
 import CategoryTile from "../CategoryTile";
 
 const LandingPage: React.FC = () => {
-  const categories = useAppSelector(selectCategoryNames);
+  const { data: categories, isLoading } = useGetCategoriesQuery();
 
-  if (!categories) return <LoadingPage />;
+  if (isLoading || !categories) return <LoadingPage />;
 
   return (
     <Page.Container>

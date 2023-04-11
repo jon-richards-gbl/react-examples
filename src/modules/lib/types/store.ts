@@ -1,7 +1,3 @@
-import type { AuthState } from "~/auth/types/store";
-import { ProductsState } from "~/products/types/products";
+import type { default as store } from "../../../main/Store";
 
-export interface RootState {
-  auth: AuthState;
-  products: ProductsState;
-}
+export type AppState = ReturnType<typeof store.getState>;

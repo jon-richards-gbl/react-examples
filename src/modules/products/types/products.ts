@@ -1,10 +1,3 @@
-export interface ProductsState {
-  isLoading: boolean;
-  categories: Record<string, Category>;
-  categoryNames: string[];
-  products: Record<string, ProductFull>;
-}
-
 export interface Category {
   name: string;
   products: ProductStub[];
