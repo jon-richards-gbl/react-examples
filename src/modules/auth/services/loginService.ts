@@ -1,9 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 
-import {
-  /* apiService, */
-  storeApiBaseQuery,
-} from "~/lib/helpers/apiService";
+import { storeApiBaseQuery } from "~/lib/helpers/apiService";
 
 import { LoginRequest, LoginResponse } from "../types/login";
 
@@ -25,21 +22,4 @@ export const loginApi = createApi({
   }),
 });
 
-// export type LoginState = ReturnType<typeof loginApi.reducer>;
-
 export const { usePostLoginMutation } = loginApi;
-
-// export const loginService = {
-//   async postLogin(data: LoginRequest): Promise<LoginResponse> {
-//     const res = await apiService.post<{ token: string }, LoginRequest>(
-//       LoginEndpoints.PostLogin,
-//       { data }
-//     );
-//
-//     return {
-//       ...res,
-//       // the api service doesn't include this, but we can get it from the login request
-//       username: data.username
-//     };
-//   }
-// };

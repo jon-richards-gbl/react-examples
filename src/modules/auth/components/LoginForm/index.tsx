@@ -1,12 +1,5 @@
-import React from /*, { useCallback }*/
-"react";
+import React from "react";
 
-// import { useAppDispatch } from "~/lib/hooks";
-//
-// // import { postLogin } from "../../store/actions";
-// import { LoginRequest } from "../../types/store";
-// import { usePostLoginMutation } from "~/auth/services/loginService";
-// import { login } from "~/auth/store/reducer";
 import { useSubmitLogin } from "~/auth/hooks/useSubmitLogin";
 import LoadingSpinner from "~/lib/components/LoadingSpinner";
 import TextInput from "~/lib/components/TextInput";

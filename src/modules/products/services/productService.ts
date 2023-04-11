@@ -41,8 +41,6 @@ export const productApi = createApi({
   }),
 });
 
-// export type ProductsState = typeof productApi
-
 export const {
   useGetCategoriesQuery,
   useGetItemByIdQuery,

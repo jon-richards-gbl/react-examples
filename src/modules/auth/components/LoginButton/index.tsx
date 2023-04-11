@@ -7,12 +7,7 @@ import { useAppDispatch, useAppSelector } from "~/lib/hooks";
 
 import { selectLoggedInUser } from "../../store/selectors";
 
-// import { useSelector } from "react-redux";
-// import { usePostLoginMutation } from "~/auth/services/loginService";
-
 const LoginButton: React.FC = () => {
-  // const [,result] = usePostLoginMutation({fixedCacheKey: 'user-login'})
-  // const {} = useAppSelector(state => state.login.)
   const dispatch = useAppDispatch();
   const loggedInUser = useAppSelector(selectLoggedInUser);
 
