@@ -10,8 +10,13 @@ const LoginForm: React.FC = () => {
   return (
     <div className="mx-auto max-w-md rounded-lg bg-white shadow-md p-6">
       <form method="post" onSubmit={handleSubmit}>
-        <TextInput name="username" label="Username" type="text" />
-        <TextInput name="password" label="Password" type="password" />
+        <TextInput name="username" label="Username" type="text" isRequired />
+        <TextInput
+          name="password"
+          label="Password"
+          type="password"
+          isRequired
+        />
 
         <button
           type="submit"
