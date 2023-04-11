@@ -1,26 +1,18 @@
-import React, { useCallback } from "react";
+import React from /*, { useCallback }*/
+"react";
 
+// import { useAppDispatch } from "~/lib/hooks";
+//
+// // import { postLogin } from "../../store/actions";
+// import { LoginRequest } from "../../types/store";
+// import { usePostLoginMutation } from "~/auth/services/loginService";
+// import { login } from "~/auth/store/reducer";
+import { useSubmitLogin } from "~/auth/hooks/useSubmitLogin";
+import LoadingSpinner from "~/lib/components/LoadingSpinner";
 import TextInput from "~/lib/components/TextInput";
-import { useAppDispatch } from "~/lib/hooks";
-
-import { postLogin } from "../../store/actions";
-import { LoginRequest } from "../../types/store";
 
 const LoginForm: React.FC = () => {
-  const dispatch = useAppDispatch();
-
-  const handleSubmit: React.FormEventHandler = useCallback((e) => {
-    e.preventDefault();
-
-    // assertions because typescript cannot validate the form on its own
-    const formData = new FormData(e.target as HTMLFormElement);
-    const loginRequest: LoginRequest = {
-      username: formData.get("username") as string,
-      password: formData.get("password") as string,
-    };
-
-    dispatch(postLogin(loginRequest));
-  }, []);
+  const { handleSubmit, isLoading } = useSubmitLogin();
 
   return (
     <div className="mx-auto max-w-md rounded-lg bg-white shadow-md p-6">
@@ -30,9 +22,10 @@ const LoginForm: React.FC = () => {
 
         <button
           type="submit"
-          className="inline-block w-full rounded bg-sky-800 px-6 py-2 text-xs font-medium uppercase text-white shadow mt-4"
+          className="inline-flex w-full rounded bg-sky-800 px-6 py-2 text-xs font-medium uppercase text-white shadow mt-4 justify-between items-center"
         >
           Sign in
+          {isLoading && <LoadingSpinner />}
         </button>
       </form>
     </div>

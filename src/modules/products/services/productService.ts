@@ -15,28 +15,33 @@ export const productApi = createApi({
   baseQuery: storeApiBaseQuery,
   endpoints: (builder) => ({
     getCategories: builder.query<string[], void>({
-      query: () => ProductEndpoints.GetCategories,
+      query: () => ({
+        url: ProductEndpoints.GetCategories,
+      }),
     }),
 
     getItemsByCategory: builder.query<Category, string>({
-      query: (categoryName) =>
-        ProductEndpoints.GetCategory.replace("{categoryName}", categoryName),
-      transformResponse(baseQueryReturnValue: ProductStub[], _, categoryName) {
-        return {
-          name: categoryName,
-          products: baseQueryReturnValue,
-        };
-      },
+      query: (categoryName) => ({
+        url: ProductEndpoints.GetCategory.replace(
+          "{categoryName}",
+          categoryName
+        ),
+      }),
+      transformResponse: (response: ProductStub[], _, categoryName) => ({
+        name: categoryName,
+        products: response,
+      }),
     }),
 
     getItemById: builder.query<ProductFull, string>({
-      query: (productId) =>
-        ProductEndpoints.GetItem.replace("{productId}", productId),
+      query: (productId) => ({
+        url: ProductEndpoints.GetItem.replace("{productId}", productId),
+      }),
     }),
   }),
 });
 
-export type ProductsState = typeof productApi.reducer;
+// export type ProductsState = typeof productApi
 
 export const {
   useGetCategoriesQuery,
