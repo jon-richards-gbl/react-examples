@@ -1,16 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+import { createInitialLoginState } from "~/auth/store/state";
+
 import { LoginDispatchPayload } from "../types/login";
-
-interface AuthState {
-  loggedInUser: string | null;
-  loginToken: string | null;
-}
-
-const createInitialLoginState = (): AuthState => ({
-  loggedInUser: null,
-  loginToken: null,
-});
 
 const authSlice = createSlice({
   name: "auth",

@@ -233,7 +233,7 @@ and selectors to retrieve and manipulate the state.
 ```
 └── products/
     └── store/
-        ├── reducer.ts
+        ├── index.ts
         ├── actions.ts
         └── selectors.ts
 ```

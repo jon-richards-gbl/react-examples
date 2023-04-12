@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 
 import { usePostLoginMutation } from "~/auth/services/loginService";
-import { login } from "~/auth/store/reducer";
+import { login } from "~/auth/store";
 import { LoginRequest } from "~/auth/types/login";
 import { useAppDispatch } from "~/lib/hooks";
 
