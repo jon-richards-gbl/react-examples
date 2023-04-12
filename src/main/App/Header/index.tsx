@@ -1,17 +1,17 @@
 import capitalize from "lodash/capitalize";
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link, generatePath } from "react-router-dom";
 
 import LoginButton from "~/auth/components/LoginButton";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
+import { useAppSelector } from "~/lib/hooks/state";
 import { selectCategoryNames } from "~/products/store/selectors";
 import reactIcon from "~assets/react.svg";
 
 import "./styles.css";
 
 const AppHeader: React.FC = () => {
-  const { data: categories } = useSelector(selectCategoryNames);
+  const { data: categories } = useAppSelector(selectCategoryNames);
 
   return (
     <header className="header">

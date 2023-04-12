@@ -7,7 +7,7 @@ import type { ProductStub } from "~/products/types/products";
 
 import "./styles.css";
 
-import { removeFromCart } from "../../store";
+import { removeFromCart } from "../../store/actions";
 
 interface ShoppingCartItemProps {
   item: ProductStub;

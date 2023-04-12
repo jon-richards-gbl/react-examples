@@ -8,3 +8,6 @@ export const selectItemIsInCart = (id: number) =>
   createSelector(selectCartItems, (cartItems) => {
     return cartItems.some((item) => item.id === id);
   });
+
+export const selectIsCartLoading = (state: AppState) =>
+  state.shoppingCart.isLoading;

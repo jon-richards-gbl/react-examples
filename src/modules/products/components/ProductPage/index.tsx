@@ -1,13 +1,12 @@
 import capitalize from "lodash/capitalize";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { generatePath, useParams } from "react-router-dom";
 
 import LoadingPage from "~/lib/components/LoadingPage";
 import NotFoundPage from "~/lib/components/NotFoundPage";
 import Page from "~/lib/components/Page";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
-import { useAppDispatch } from "~/lib/hooks/state";
+import { useAppDispatch, useAppSelector } from "~/lib/hooks/state";
 
 import "./styles.css";
 
@@ -21,7 +20,7 @@ type ProductParams = {
 const ProductPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const { id = "" } = useParams<ProductParams>();
-  const { isLoading, product } = useSelector(selectProductById(id));
+  const { isLoading, product } = useAppSelector(selectProductById(id));
 
   useEffect(() => {
     dispatch(fetchProductById(id));

@@ -1,4 +1,4 @@
-import type { SerializedError } from "@reduxjs/toolkit";
+import { AnyAction, SerializedError, ThunkAction } from "@reduxjs/toolkit";
 
 import type { default as store } from "../../../main/Store";
 
@@ -9,3 +9,10 @@ export interface AsyncData<T> {
   data: T;
   error: SerializedError | null;
 }
+
+export type AppDispatchWithThunk<T = void> = ThunkAction<
+  T,
+  AppState,
+  unknown,
+  AnyAction
+>;
