@@ -8,6 +8,7 @@ import Page from "~/lib/components/Page";
 
 import { useGetItemsByCategoryQuery } from "../../services/productService";
 import ProductTile from "../ProductTile";
+import ProductTileGrid from "../ProductTileGrid";
 
 type CategoryParams = {
   slug: string | undefined;
@@ -24,11 +25,11 @@ const CategoryPage: React.FC = () => {
   return (
     <Page.Container>
       <Page.Header title={capitalize(category.name)} />
-      <div className="grid grid-cols-4 p-4">
+      <ProductTileGrid>
         {category.products.map((product) => (
           <ProductTile key={product.id} product={product} />
         ))}
-      </div>
+      </ProductTileGrid>
     </Page.Container>
   );
 };

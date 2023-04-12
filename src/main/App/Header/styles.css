@@ -1,0 +1,21 @@
+.header {
+  @apply py-2 flex justify-between bg-sky-800 items-center w-full shadow-md text-slate-100;
+
+  &__container {
+    @apply flex items-center;
+
+    & > * {
+      @apply m-2;
+    }
+  }
+
+  &__icon {
+    @apply text-slate-300;
+  }
+
+  &__nav {
+    & a:hover {
+      @apply text-slate-400;
+    }
+  }
+}

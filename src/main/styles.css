@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.app-root {
+  @apply bg-neutral-100 min-h-screen;
+}
+
+.button-base {
+  @apply p-2 block rounded;
+}
+
+.heading-1 {
+  @apply text-4xl font-medium leading-tight pb-2;
+}
+
+.heading-3 {
+  @apply text-xl font-medium leading-tight pb-2;
+}
+
+.heading-4 {
+  @apply text-base font-medium leading-tight pb-2;
+}

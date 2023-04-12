@@ -1,0 +1,23 @@
+.page {
+  &-container {
+    @apply container p-4 mx-auto;
+  }
+
+  &-header {
+    @apply border-b-2 border-neutral-200 mb-4 p-4;
+
+    &__breadcrumbs {
+      & > a {
+        @apply text-sky-300;
+
+        &:hover {
+          @apply text-sky-600 underline;
+        }
+      }
+
+      & > span {
+        @apply mx-2 text-neutral-500 font-bold;
+      }
+    }
+  }
+}

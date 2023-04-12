@@ -13,17 +13,13 @@ const CategoryTile: React.FC<CategoryTileProps> = ({ categoryName }) => {
   const link = generatePath(PageRoutes.CategoryPage, { slug: categoryName });
 
   return (
-    <Card
-      imageSrc="http://via.placeholder.com/640x360"
-      name={categoryName}
-      link={link}
-    >
-      <Link to={link}>
-        <h3 className="text-xl font-medium leading-tight">
-          {capitalize(categoryName)}
-        </h3>
-      </Link>
-    </Card>
+    <Card.Container>
+      <Card.Content>
+        <Link to={link}>
+          <h3 className="heading-3">{capitalize(categoryName)}</h3>
+        </Link>
+      </Card.Content>
+    </Card.Container>
   );
 };
 

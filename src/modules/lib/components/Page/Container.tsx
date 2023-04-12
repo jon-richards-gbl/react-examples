@@ -2,9 +2,11 @@ import React from "react";
 
 interface PageContainerProps {
   children: React.ReactNode;
+  className?: string;
 }
-const PageContainer: React.FC<PageContainerProps> = ({ children }) => (
-  <section className="container p-4 mx-auto">{children}</section>
-);
+const PageContainer: React.FC<PageContainerProps> = ({
+  children,
+  className = "",
+}) => <section className={`page-container ${className}`}>{children}</section>;
 
 export default PageContainer;

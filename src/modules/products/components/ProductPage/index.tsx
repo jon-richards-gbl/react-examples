@@ -8,6 +8,7 @@ import Page from "~/lib/components/Page";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
 
 import { useGetItemByIdQuery } from "../../services/productService";
+import "./styles.css";
 
 type ProductParams = {
   id: string | undefined;
@@ -31,12 +32,13 @@ const ProductPage: React.FC = () => {
   return (
     <Page.Container>
       <Page.Header title={product.title} breadCrumbs={breadCrumbs} />
-      <article className="p-4">
+      <article className="product-page">
         <img
-          className="h-48"
+          className="product-page__image"
           alt={`Photo of ${product.title}`}
           src={product.image}
         />
+        <h2 className="heading-3">About</h2>
         <p>{product.description}</p>
       </article>
     </Page.Container>
