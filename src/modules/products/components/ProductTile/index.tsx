@@ -4,6 +4,9 @@ import { Link, generatePath } from "react-router-dom";
 
 import Card from "~/lib/components/Card";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
+import { useAppDispatch, useAppSelector } from "~/lib/hooks";
+import { addToCart } from "~/shoppingCart/store/actions";
+import { selectItemIsInCart } from "~/shoppingCart/store/selectors";
 
 import "./styles.css";
 
@@ -11,22 +14,25 @@ import { ProductStub } from "../../types/products";
 
 interface ProductTileProps {
   product: ProductStub;
-  addToCart(item: ProductStub): void;
-  isInCart: boolean;
+  // addToCart(item: ProductStub): void;
+  // isInCart: boolean;
 }
 
 const ProductTile: React.FC<ProductTileProps> = ({
   product,
-  addToCart,
-  isInCart,
+  // addToCart,
+  // isInCart,
 }) => {
+  const dispatch = useAppDispatch();
+  const isInCart = useAppSelector(selectItemIsInCart(product.id));
+
   const link = generatePath(PageRoutes.ProductPage, {
     id: String(product.id),
     slug: kebabCase(product.title),
   });
 
   const handleAddToCard = () => {
-    addToCart(product);
+    dispatch(addToCart(product));
   };
 
   return (

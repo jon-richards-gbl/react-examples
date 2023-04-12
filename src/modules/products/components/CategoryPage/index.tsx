@@ -1,6 +1,6 @@
 import capitalize from "lodash/capitalize";
-import uniqBy from "lodash/uniqBy";
-import React, { useCallback, useEffect, useState } from "react";
+// import uniqBy from "lodash/uniqBy";
+import React, { useEffect /*, useCallback, useState */ }  from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -14,7 +14,7 @@ import "./styles.css";
 
 import { fetchCategoryByName } from "../../store/actions";
 import { selectCategoryByName } from "../../store/selectors";
-import { ProductStub } from "../../types/products";
+// import { ProductStub } from "../../types/products";
 import ProductTile from "../ProductTile";
 import ProductTileGrid from "../ProductTileGrid";
 
@@ -32,21 +32,21 @@ const CategoryPage: React.FC = () => {
   }, [slug]);
 
   /* ----- new cart functionality ----- */
-  const [cartItems, setCartItems] = useState<ProductStub[]>([]);
-
-  const addToCart = useCallback(
-    (newItem: ProductStub) => {
-      setCartItems((prev) => uniqBy([...prev, newItem], "id"));
-    },
-    [setCartItems]
-  );
-
-  const removeFromCart = useCallback(
-    (removedItem: ProductStub) => {
-      setCartItems((prev) => prev.filter((item) => item.id !== removedItem.id));
-    },
-    [setCartItems]
-  );
+  // const [cartItems, setCartItems] = useState<ProductStub[]>([]);
+  //
+  // const addToCart = useCallback(
+  //   (newItem: ProductStub) => {
+  //     setCartItems((prev) => uniqBy([...prev, newItem], "id"));
+  //   },
+  //   [setCartItems]
+  // );
+  //
+  // const removeFromCart = useCallback(
+  //   (removedItem: ProductStub) => {
+  //     setCartItems((prev) => prev.filter((item) => item.id !== removedItem.id));
+  //   },
+  //   [setCartItems]
+  // );
   /* ----- new cart functionality ----- */
 
   if (isLoading) return <LoadingPage />;
@@ -61,13 +61,13 @@ const CategoryPage: React.FC = () => {
             <ProductTile
               key={product.id}
               product={product}
-              addToCart={addToCart}
-              isInCart={cartItems.map((c) => c.id).includes(product.id)}
+              // addToCart={addToCart}
+              // isInCart={cartItems.map((c) => c.id).includes(product.id)}
             />
           ))}
         </ProductTileGrid>
         <aside className="category-page__sidebar">
-          <ShoppingCart cartItems={cartItems} removeFromCart={removeFromCart} />
+          <ShoppingCart /* cartItems={cartItems} removeFromCart={removeFromCart} */ />
         </aside>
       </div>
     </Page.Container>

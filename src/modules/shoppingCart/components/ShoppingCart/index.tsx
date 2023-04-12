@@ -1,25 +1,30 @@
+/* eslint-disable no-empty-pattern, @typescript-eslint/no-empty-interface */
 import React from "react";
 
-import type { ProductStub } from "~/products/types/products";
+import { useAppSelector } from "~/lib/hooks";
 
+// import type { ProductStub } from "~/products/types/products";
 import ShoppingCartItem from "../ShoppingCartItem";
+import { selectCartItems } from "../../store/selectors";
 
 interface ShoppingCartProps {
-  cartItems: ProductStub[];
-  removeFromCart(item: ProductStub): void;
+  //  cartItems: ProductStub[];
+  //  removeFromCart(item: ProductStub): void;
 }
 
 const ShoppingCart: React.FC<ShoppingCartProps> = ({
-  cartItems,
-  removeFromCart,
+//  cartItems,
+//  removeFromCart,
 }) => {
+  const cartItems = useAppSelector(selectCartItems);
+
   return (
     <ul>
       {cartItems.map((item) => (
         <ShoppingCartItem
           key={item.id}
           item={item}
-          removeFromCart={removeFromCart}
+          // removeFromCart={removeFromCart}
         />
       ))}
     </ul>
