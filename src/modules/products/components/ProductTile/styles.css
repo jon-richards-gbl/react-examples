@@ -14,4 +14,12 @@
       @apply text-sky-600 underline;
     }
   }
+
+  &__add-to-cart {
+    @apply bg-sky-800 text-white shadow mt-4;
+
+    &:disabled {
+      @apply cursor-not-allowed bg-neutral-400;
+    }
+  }
 }

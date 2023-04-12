@@ -11,13 +11,23 @@ import { ProductStub } from "../../types/products";
 
 interface ProductTileProps {
   product: ProductStub;
+  addToCart(item: ProductStub): void;
+  isInCart: boolean;
 }
 
-const ProductTile: React.FC<ProductTileProps> = ({ product }) => {
+const ProductTile: React.FC<ProductTileProps> = ({
+  product,
+  addToCart,
+  isInCart,
+}) => {
   const link = generatePath(PageRoutes.ProductPage, {
     id: String(product.id),
     slug: kebabCase(product.title),
   });
+
+  const handleAddToCard = () => {
+    addToCart(product);
+  };
 
   return (
     <Card.Container>
@@ -31,6 +41,14 @@ const ProductTile: React.FC<ProductTileProps> = ({ product }) => {
         <Link className="product-tile__link" to={link}>
           More
         </Link>
+
+        <button
+          onClick={handleAddToCard}
+          className="button-base product-tile__add-to-cart"
+          disabled={isInCart}
+        >
+          Add to Cart
+        </button>
       </Card.Content>
     </Card.Container>
   );

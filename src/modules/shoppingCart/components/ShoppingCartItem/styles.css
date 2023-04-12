@@ -1,0 +1,7 @@
+.shopping-cart-item {
+  @apply relative;
+
+  &__remove {
+    @apply absolute top-5 right-5 bg-slate-200 h-6 w-6 rounded-full text-center;
+  }
+}

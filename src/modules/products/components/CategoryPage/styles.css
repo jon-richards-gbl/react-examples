@@ -1,0 +1,11 @@
+.category-page {
+  @apply flex;
+
+  &__main {
+    @apply flex-[3_3_0%];
+  }
+
+  &__sidebar {
+    @apply flex-[1_1_0%];
+  }
+}
