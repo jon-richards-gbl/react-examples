@@ -1,0 +1,15 @@
+.card {
+  @apply rounded-md bg-white shadow-md m-2;
+
+  &--centered {
+    @apply mx-auto;
+  }
+
+  &-header {
+    @apply flex justify-center p-2 border-b-2 border-slate-200;
+  }
+
+  &-content {
+    @apply p-6;
+  }
+}

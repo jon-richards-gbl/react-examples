@@ -1,5 +1,7 @@
 import React, { HTMLInputTypeAttribute } from "react";
 
+import "./styles.css";
+
 interface TextInputProps {
   name: string;
   label: string;
@@ -14,7 +16,7 @@ const TextInput: React.FC<TextInputProps> = ({
   isRequired,
 }) => (
   <>
-    <label htmlFor={name} className="block mb-2 text-neutral-500">
+    <label htmlFor={name} className="text-input--label">
       {label}
     </label>
     <input
@@ -22,7 +24,7 @@ const TextInput: React.FC<TextInputProps> = ({
       name={name}
       type={type}
       required={isRequired}
-      className="w-full rounded border-2 p-3 mb-4"
+      className="text-input"
     />
   </>
 );

@@ -1,0 +1,17 @@
+.product-tile {
+  &__header {
+    @apply flex justify-center;
+
+    & > img {
+      @apply h-36;
+    }
+  }
+
+  &__link {
+    @apply text-sky-300;
+
+    &:hover {
+      @apply text-sky-600 underline;
+    }
+  }
+}

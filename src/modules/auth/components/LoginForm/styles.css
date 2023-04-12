@@ -1,0 +1,7 @@
+.login-form {
+  @apply max-w-md;
+
+  &__submit {
+    @apply inline-flex w-full bg-sky-800 text-xs font-medium text-white shadow mt-4 justify-between items-center;
+  }
+}

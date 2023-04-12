@@ -1,0 +1,7 @@
+.text-input {
+  @apply w-full rounded border-2 p-3 mb-4;
+
+  &--label {
+    @apply block mb-2 text-neutral-500;
+  }
+}

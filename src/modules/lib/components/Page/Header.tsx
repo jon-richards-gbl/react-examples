@@ -9,28 +9,21 @@ interface PageLink {
 interface PageHeaderProps {
   title: string;
   breadCrumbs?: PageLink[];
-  centred?: boolean;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({ title, breadCrumbs }) => (
-  <header className="border-b-2 border-neutral-200 mb-4 p-4">
-    <nav>
-      <Link className="text-sky-300 hover:text-sky-600 hover:underline" to="/">
-        Home
-      </Link>
+  <header className="page-header">
+    <nav className="page-header__breadcrumbs">
+      <Link to="/">Home</Link>
+
       {breadCrumbs?.map((link) => (
         <React.Fragment key={link.name}>
-          <span className="mx-2 text-neutral-500 font-bold">/</span>
-          <Link
-            className="text-sky-300 hover:text-sky-600 hover:underline"
-            to={link.url}
-          >
-            {link.name}
-          </Link>
+          <span>/</span>
+          <Link to={link.url}>{link.name}</Link>
         </React.Fragment>
       ))}
     </nav>
-    <h2 className="text-4xl font-medium leading-tight">{title}</h2>
+    <h1 className="heading-1">{title}</h1>
   </header>
 );
 

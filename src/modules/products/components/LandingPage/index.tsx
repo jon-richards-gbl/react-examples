@@ -5,6 +5,7 @@ import Page from "~/lib/components/Page";
 
 import { useGetCategoriesQuery } from "../../services/productService";
 import CategoryTile from "../CategoryTile";
+import ProductTileGrid from "../ProductTileGrid";
 
 const LandingPage: React.FC = () => {
   const { data: categories, isLoading } = useGetCategoriesQuery();
@@ -13,11 +14,11 @@ const LandingPage: React.FC = () => {
 
   return (
     <Page.Container>
-      <div className="grid grid-cols-4 p-4">
+      <ProductTileGrid>
         {categories.map((category) => (
           <CategoryTile key={category} categoryName={category} />
         ))}
-      </div>
+      </ProductTileGrid>
     </Page.Container>
   );
 };

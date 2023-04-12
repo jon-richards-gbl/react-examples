@@ -5,6 +5,8 @@ import { Link, generatePath } from "react-router-dom";
 import Card from "~/lib/components/Card";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
 
+import "./styles.css";
+
 import { ProductStub } from "../../types/products";
 
 interface ProductTileProps {
@@ -18,17 +20,19 @@ const ProductTile: React.FC<ProductTileProps> = ({ product }) => {
   });
 
   return (
-    <Card imageSrc={product.image} name={product.title} link={link}>
-      <h4 className="text-base font-medium leading-tight pb-2">
-        {product.title}
-      </h4>
-      <Link
-        className="text-sky-300 hover:text-sky-600 hover:underline"
-        to={link}
-      >
-        More
-      </Link>
-    </Card>
+    <Card.Container>
+      <Card.Header>
+        <Link to={link} className="product-tile__header">
+          <img src={product.image} alt={`Image of ${product.title}`} />
+        </Link>
+      </Card.Header>
+      <Card.Content>
+        <h4 className="heading-4">{product.title}</h4>
+        <Link className="product-tile__link" to={link}>
+          More
+        </Link>
+      </Card.Content>
+    </Card.Container>
   );
 };
 
