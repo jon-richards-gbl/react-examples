@@ -7,8 +7,9 @@ import NotFoundPage from "~/lib/components/NotFoundPage";
 import Page from "~/lib/components/Page";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
 
-import { useGetItemByIdQuery } from "../../services/productService";
 import "./styles.css";
+
+import { useGetItemByIdQuery } from "../../services/productService";
 
 type ProductParams = {
   id: string | undefined;

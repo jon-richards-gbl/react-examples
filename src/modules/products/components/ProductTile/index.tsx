@@ -5,8 +5,9 @@ import { Link, generatePath } from "react-router-dom";
 import Card from "~/lib/components/Card";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
 
-import { ProductStub } from "../../types/products";
 import "./styles.css";
+
+import { ProductStub } from "../../types/products";
 
 interface ProductTileProps {
   product: ProductStub;

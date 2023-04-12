@@ -5,8 +5,9 @@ import { logout } from "~/auth/store/reducer";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
 import { useAppDispatch, useAppSelector } from "~/lib/hooks";
 
-import { selectLoggedInUser } from "../../store/selectors";
 import "./styles.css";
+
+import { selectLoggedInUser } from "../../store/selectors";
 
 const LoginButton: React.FC = () => {
   const dispatch = useAppDispatch();
