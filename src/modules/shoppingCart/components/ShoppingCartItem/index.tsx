@@ -7,19 +7,15 @@ import type { ProductStub } from "~/products/types/products";
 
 import "./styles.css";
 
-import { removeFromCart } from "../../store/actions";
+import { removeFromCart } from "../../store";
 
 interface ShoppingCartItemProps {
   item: ProductStub;
-  // removeFromCart(item: ProductStub): void;
 }
 
 const MAX_TITLE_LENGTH = 20;
 
-const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({
-  item,
-  // removeFromCart,
-}) => {
+const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({ item }) => {
   const dispatch = useAppDispatch();
   const handleRemoveFromCart = () => {
     dispatch(removeFromCart(item));

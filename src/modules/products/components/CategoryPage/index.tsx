@@ -1,6 +1,5 @@
 import capitalize from "lodash/capitalize";
-// import uniqBy from "lodash/uniqBy";
-import React, { useEffect /*, useCallback, useState */ }  from "react";
+import React, { useEffect }  from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
@@ -14,7 +13,6 @@ import "./styles.css";
 
 import { fetchCategoryByName } from "../../store/actions";
 import { selectCategoryByName } from "../../store/selectors";
-// import { ProductStub } from "../../types/products";
 import ProductTile from "../ProductTile";
 import ProductTileGrid from "../ProductTileGrid";
 
@@ -31,24 +29,6 @@ const CategoryPage: React.FC = () => {
     dispatch(fetchCategoryByName(slug));
   }, [slug]);
 
-  /* ----- new cart functionality ----- */
-  // const [cartItems, setCartItems] = useState<ProductStub[]>([]);
-  //
-  // const addToCart = useCallback(
-  //   (newItem: ProductStub) => {
-  //     setCartItems((prev) => uniqBy([...prev, newItem], "id"));
-  //   },
-  //   [setCartItems]
-  // );
-  //
-  // const removeFromCart = useCallback(
-  //   (removedItem: ProductStub) => {
-  //     setCartItems((prev) => prev.filter((item) => item.id !== removedItem.id));
-  //   },
-  //   [setCartItems]
-  // );
-  /* ----- new cart functionality ----- */
-
   if (isLoading) return <LoadingPage />;
   if (!category) return <NotFoundPage />;
 
@@ -58,16 +38,11 @@ const CategoryPage: React.FC = () => {
       <div className="category-page">
         <ProductTileGrid className="category-page__main">
           {category.products.map((product) => (
-            <ProductTile
-              key={product.id}
-              product={product}
-              // addToCart={addToCart}
-              // isInCart={cartItems.map((c) => c.id).includes(product.id)}
-            />
+            <ProductTile key={product.id} product={product} />
           ))}
         </ProductTileGrid>
         <aside className="category-page__sidebar">
-          <ShoppingCart /* cartItems={cartItems} removeFromCart={removeFromCart} */ />
+          <ShoppingCart />
         </aside>
       </div>
     </Page.Container>
