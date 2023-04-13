@@ -1,9 +1,14 @@
+import { setDataResult } from "~/lib/helpers/store";
+import { AsyncData } from "~/lib/types/store";
+
+import { LoginResponse } from "../types/login";
+
 interface AuthState {
-  loggedInUser: string | null;
-  loginToken: string | null;
+  user: AsyncData<LoginResponse | null>;
 }
 
-export const createInitialLoginState = (): AuthState => ({
-  loggedInUser: null,
-  loginToken: null,
-});
+export function createInitialAuthState(): AuthState {
+  return {
+    user: setDataResult(null),
+  };
+}

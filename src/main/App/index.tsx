@@ -1,8 +1,18 @@
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
+
+import { useAppDispatch } from "~/lib/hooks/state";
+import { fetchCategoryNames } from "~/products/store/actions";
 
 import AppHeader from "./Header";
 
-function App() {
+const App: React.FC = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategoryNames());
+  }, []);
+
   return (
     <>
       <AppHeader />
@@ -11,6 +21,6 @@ function App() {
       </main>
     </>
   );
-}
+};
 
 export default App;

@@ -1,19 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { logout } from "~/auth/store";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
-import { useAppDispatch, useAppSelector } from "~/lib/hooks";
+import { useAppDispatch, useAppSelector } from "~/lib/hooks/state";
 
 import "./styles.css";
 
-import { selectLoggedInUser } from "../../store/selectors";
+import { logout } from "../../store";
+import { selectLoggedInUsername } from "../../store/selectors";
 
 const LoginButton: React.FC = () => {
   const dispatch = useAppDispatch();
-  const loggedInUser = useAppSelector(selectLoggedInUser);
+  const loggedInUser = useAppSelector(selectLoggedInUsername);
 
-  const handleOnClickLogout = () => dispatch(logout());
+  const handleOnClickLogout = () => {
+    dispatch(logout());
+  };
 
   if (!loggedInUser)
     return (

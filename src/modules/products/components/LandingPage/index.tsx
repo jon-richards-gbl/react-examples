@@ -1,14 +1,15 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import LoadingPage from "~/lib/components/LoadingPage";
 import Page from "~/lib/components/Page";
 
-import { useGetCategoriesQuery } from "../../services/productService";
+import { selectCategoryNames } from "../../store/selectors";
 import CategoryTile from "../CategoryTile";
 import ProductTileGrid from "../ProductTileGrid";
 
 const LandingPage: React.FC = () => {
-  const { data: categories, isLoading } = useGetCategoriesQuery();
+  const { data: categories, isLoading } = useSelector(selectCategoryNames);
 
   if (isLoading || !categories) return <LoadingPage />;
 

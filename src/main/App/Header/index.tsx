@@ -1,16 +1,17 @@
 import capitalize from "lodash/capitalize";
 import React from "react";
+import { useSelector } from "react-redux";
 import { Link, generatePath } from "react-router-dom";
 
 import LoginButton from "~/auth/components/LoginButton";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
-import { useGetCategoriesQuery } from "~/products/services/productService";
+import { selectCategoryNames } from "~/products/store/selectors";
 import reactIcon from "~assets/react.svg";
 
 import "./styles.css";
 
 const AppHeader: React.FC = () => {
-  const { data: categories } = useGetCategoriesQuery();
+  const { data: categories } = useSelector(selectCategoryNames);
 
   return (
     <header className="header">
@@ -20,7 +21,7 @@ const AppHeader: React.FC = () => {
       </div>
 
       <nav className="header__container header__nav">
-        {categories?.map((category) => (
+        {categories.map((category) => (
           <Link
             key={category}
             to={generatePath(PageRoutes.CategoryPage, { slug: category })}
