@@ -1,25 +1,39 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-import { createInitialLoginState } from "~/auth/store/state";
+import {
+  setDataPending,
+  setDataRejected,
+  setDataResult,
+} from "~/lib/helpers/store";
 
-import { LoginDispatchPayload } from "../types/login";
+import { submitLogin } from "./actions";
+import { createInitialAuthState } from "./state";
+
+import { authTokenService } from "../services/authTokenService";
 
 const authSlice = createSlice({
   name: "auth",
-  initialState: createInitialLoginState(),
+  initialState: createInitialAuthState(),
   reducers: {
     logout(state) {
-      state.loggedInUser = null;
-      state.loginToken = null;
+      authTokenService.clearLoginToken();
+      state.user = setDataResult(null);
     },
-    login(state, action: PayloadAction<LoginDispatchPayload>) {
-      const { username, token } = action.payload;
-      state.loggedInUser = username;
-      state.loginToken = token;
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(submitLogin.pending, (state) => {
+      state.user = setDataPending(state.user);
+    });
+    builder.addCase(submitLogin.fulfilled, (state, action) => {
+      authTokenService.setLoginToken(action.payload.token);
+      state.user = setDataResult(action.payload);
+    });
+    builder.addCase(submitLogin.rejected, (state, action) => {
+      state.user = setDataRejected(state.user, action.error);
+    });
   },
 });
 
-export const { logout, login } = authSlice.actions;
+export const { logout } = authSlice.actions;
 
 export default authSlice.reducer;

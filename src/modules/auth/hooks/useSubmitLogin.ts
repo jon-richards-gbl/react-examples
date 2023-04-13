@@ -1,13 +1,13 @@
 import React, { useCallback } from "react";
 
-import { usePostLoginMutation } from "~/auth/services/loginService";
-import { login } from "~/auth/store";
-import { LoginRequest } from "~/auth/types/login";
-import { useAppDispatch } from "~/lib/hooks";
+import { useAppDispatch, useAppSelector } from "~/lib/hooks/state";
+
+import { submitLogin } from "../store/actions";
+import { LoginRequest } from "../types/login";
 
 export const useSubmitLogin = () => {
   const dispatch = useAppDispatch();
-  const [postLogin, { isLoading, data }] = usePostLoginMutation();
+  const { isLoading, error } = useAppSelector((state) => state.auth.user);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = useCallback(
     async (e) => {
@@ -19,11 +19,10 @@ export const useSubmitLogin = () => {
         password: formData.get("password") as string,
       };
 
-      const res = await postLogin(loginRequest).unwrap();
-      dispatch(login({ token: res.token, username: loginRequest.username }));
+      dispatch(submitLogin(loginRequest));
     },
-    [postLogin]
+    []
   );
 
-  return { handleSubmit, isLoading, loginResponse: data };
+  return { handleSubmit, isLoading, error };
 };

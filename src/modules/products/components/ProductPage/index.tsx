@@ -1,24 +1,31 @@
 import capitalize from "lodash/capitalize";
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { generatePath, useParams } from "react-router-dom";
 
 import LoadingPage from "~/lib/components/LoadingPage";
 import NotFoundPage from "~/lib/components/NotFoundPage";
 import Page from "~/lib/components/Page";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
+import { useAppDispatch } from "~/lib/hooks/state";
 
 import "./styles.css";
 
-import { useGetItemByIdQuery } from "../../services/productService";
+import { fetchProductById } from "../../store/actions";
+import { selectProductById } from "../../store/selectors";
 
 type ProductParams = {
   id: string | undefined;
 };
 
 const ProductPage: React.FC = () => {
+  const dispatch = useAppDispatch();
   const { id = "" } = useParams<ProductParams>();
+  const { isLoading, product } = useSelector(selectProductById(id));
 
-  const { isLoading, data: product } = useGetItemByIdQuery(id);
+  useEffect(() => {
+    dispatch(fetchProductById(id));
+  }, [id]);
 
   if (isLoading) return <LoadingPage />;
   if (!product || !id) return <NotFoundPage />;

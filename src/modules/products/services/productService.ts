@@ -1,8 +1,6 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
+import { apiService } from "~/lib/helpers/apiService";
 
-import { storeApiBaseQuery } from "~/lib/helpers/apiService";
-
-import { Category, ProductFull, ProductStub } from "../types/products";
+import { Category, ProductFull } from "../types/products";
 
 enum ProductEndpoints {
   GetCategories = "products/categories",
@@ -10,39 +8,26 @@ enum ProductEndpoints {
   GetItem = "products/{productId}",
 }
 
-export const productApi = createApi({
-  reducerPath: "products",
-  baseQuery: storeApiBaseQuery,
-  endpoints: (builder) => ({
-    getCategories: builder.query<string[], void>({
-      query: () => ({
-        url: ProductEndpoints.GetCategories,
-      }),
-    }),
+export const productService = {
+  getCategories: (): Promise<string[]> => {
+    return apiService.get(ProductEndpoints.GetCategories);
+  },
 
-    getItemsByCategory: builder.query<Category, string>({
-      query: (categoryName) => ({
-        url: ProductEndpoints.GetCategory.replace(
-          "{categoryName}",
-          categoryName
-        ),
-      }),
-      transformResponse: (response: ProductStub[], _, categoryName) => ({
-        name: categoryName,
-        products: response,
-      }),
-    }),
+  getCategoryByName: async (categoryName: string): Promise<Category> => {
+    const endpoint = ProductEndpoints.GetCategory.replace(
+      "{categoryName}",
+      categoryName
+    );
 
-    getItemById: builder.query<ProductFull, string>({
-      query: (productId) => ({
-        url: ProductEndpoints.GetItem.replace("{productId}", productId),
-      }),
-    }),
-  }),
-});
+    return {
+      name: categoryName,
+      products: await apiService.get(endpoint),
+    };
+  },
 
-export const {
-  useGetCategoriesQuery,
-  useGetItemByIdQuery,
-  useGetItemsByCategoryQuery,
-} = productApi;
+  getProductById: (productId: string): Promise<ProductFull> => {
+    const endpoint = ProductEndpoints.GetItem.replace("{productId}", productId);
+
+    return apiService.get(endpoint);
+  },
+};
