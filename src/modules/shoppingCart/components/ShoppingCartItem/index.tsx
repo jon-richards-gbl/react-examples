@@ -2,12 +2,13 @@ import React from "react";
 
 import Card from "~/lib/components/Card";
 import { trimText } from "~/lib/helpers/text";
-import { useAppDispatch } from "~/lib/hooks/state";
+// import { useAppDispatch } from "~/lib/hooks/state";
 import type { ProductStub } from "~/products/types/products";
 
 import "./styles.css";
 
-import { removeFromCart } from "../../store/actions";
+// import { removeFromCart } from "../../store/actions";
+import { useRemoveFromCartMutation } from "../../services/shoppingCartService";
 
 interface ShoppingCartItemProps {
   item: ProductStub;
@@ -16,9 +17,12 @@ interface ShoppingCartItemProps {
 const MAX_TITLE_LENGTH = 20;
 
 const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({ item }) => {
-  const dispatch = useAppDispatch();
+  const [removeFromCart] = useRemoveFromCartMutation();
+  // const dispatch = useAppDispatch();
+
   const handleRemoveFromCart = () => {
-    dispatch(removeFromCart(item));
+    // dispatch(removeFromCart(item));
+    removeFromCart(item);
   };
 
   return (
