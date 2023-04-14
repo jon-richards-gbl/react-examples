@@ -1,7 +1,4 @@
-import {
-  /*PayloadAction, */
-  createSlice,
-} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 import {
   setDataPending,
@@ -14,22 +11,12 @@ import {
   removeFromCart,
 } from "~/shoppingCart/store/actions";
 
-// import uniqBy from "lodash/uniqBy";
-// import type { ProductStub } from "~/products/types/products";
 import { createInitialShoppingCartState } from "./state";
 
 const shoppingCartSlice = createSlice({
   name: "shoppingCart",
   initialState: createInitialShoppingCartState(),
-  reducers: {
-    // updateCartPending(state) {
-    //   state.isLoading = true;
-    // },
-    // updateCardResolved(state, action: PayloadAction<ProductStub[]>) {
-    //   state.isLoading = false;
-    //   state.items = action.payload;
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     // addToCart
     builder.addCase(addToCart.pending, (state) => {
@@ -65,8 +52,5 @@ const shoppingCartSlice = createSlice({
     });
   },
 });
-
-// export const { updateCartPending, updateCardResolved } =
-//   shoppingCartSlice.actions;
 
 export default shoppingCartSlice.reducer;
