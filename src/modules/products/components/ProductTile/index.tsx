@@ -4,8 +4,7 @@ import { Link, generatePath } from "react-router-dom";
 
 import Card from "~/lib/components/Card";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
-import { /* useAppDispatch, */ useAppSelector } from "~/lib/hooks/state";
-// import { addToCart } from "~/shoppingCart/store/actions";
+import { useAppSelector } from "~/lib/hooks/state";
 import { useAddToCartMutation } from "~/shoppingCart/services/shoppingCartService";
 import { selectItemIsInCart } from "~/shoppingCart/store/selectors";
 
@@ -18,7 +17,6 @@ interface ProductTileProps {
 }
 
 const ProductTile: React.FC<ProductTileProps> = ({ product }) => {
-  // const dispatch = useAppDispatch();
   const [addToCart] = useAddToCartMutation();
   const isInCart = useAppSelector(selectItemIsInCart(product.id));
 
@@ -28,7 +26,6 @@ const ProductTile: React.FC<ProductTileProps> = ({ product }) => {
   });
 
   const handleAddToCard = () => {
-    // dispatch(addToCart(product));
     addToCart(product);
   };
 

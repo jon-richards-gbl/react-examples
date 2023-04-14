@@ -1,6 +1,6 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 
-import { /* apiService, */ storeApiBaseQuery } from "~/lib/helpers/apiService";
+import { storeApiBaseQuery } from "~/lib/helpers/apiBaseQuery";
 import type { ProductStub } from "~/products/types/products";
 
 import {
@@ -15,35 +15,37 @@ enum ShoppingCartEndpoints {
   GetUpdateCart = "carts/7",
 }
 
+const CART_TAG = "Cart";
+
 export const shoppingCartApi = createApi({
-  reducerPath: 'shoppingCartApi',
+  reducerPath: "shoppingCart",
   baseQuery: storeApiBaseQuery,
-  tagTypes: ['Cart'],
+  tagTypes: [CART_TAG],
   endpoints: (builder) => ({
     addToCart: builder.mutation({
       query: (item: ProductStub) => ({
         url: ShoppingCartEndpoints.PutUpdateCart,
-        method: 'PUT',
-        data: mapItemsToCart([item])
+        method: "PUT",
+        data: mapItemsToCart([item]),
       }),
       transformResponse: (__, _, item) => {
         // behind the scenes putting the data into local storage since the fake api won't persist
         return addLocalStoreMock(item);
       },
-      invalidatesTags: ['Cart']
+      invalidatesTags: [CART_TAG],
     }),
 
     removeFromCart: builder.mutation({
       query: (item: ProductStub) => ({
         url: ShoppingCartEndpoints.PutUpdateCart,
-        method: 'PUT',
-        data: mapItemsToCart([item])
+        method: "PUT",
+        data: mapItemsToCart([item]),
       }),
       transformResponse: (__, _, item) => {
         // behind the scenes putting the data into local storage since the fake api won't persist
         return removeLocalStoreMock(item);
       },
-      invalidatesTags: ['Cart']
+      invalidatesTags: [CART_TAG],
     }),
 
     fetchCart: builder.query<ProductStub[], void>({
@@ -52,9 +54,9 @@ export const shoppingCartApi = createApi({
         // behind the scenes getting the data from local storage since the fake api won't persist
         return getLocalStoreMock();
       },
-      providesTags: ['Cart']
-    })
-  })
+      providesTags: ["Cart"],
+    }),
+  }),
 });
 
 export const {
@@ -62,36 +64,3 @@ export const {
   useFetchCartQuery,
   useAddToCartMutation,
 } = shoppingCartApi;
-
-// export const shoppingCartService = {
-//   putToCart: async (item: ProductStub) => {
-//     // behind the scenes putting the data into local storage since the fake api won't persist
-//     const updatedCart = addLocalStoreMock(item);
-//
-//     await apiService.put(ShoppingCartEndpoints.PutUpdateCart, {
-//       data: mapItemsToCart(updatedCart),
-//     });
-//
-//     return updatedCart;
-//   },
-//
-//   removeFromCart: async (item: ProductStub) => {
-//     // behind the scenes putting the data into local storage since the fake api won't persist
-//     const updatedCart = removeLocalStoreMock(item);
-//
-//     await apiService.put(ShoppingCartEndpoints.PutUpdateCart, {
-//       data: mapItemsToCart(updatedCart),
-//     });
-//
-//     return updatedCart;
-//   },
-//
-//   fetchCart: async () => {
-//     // behind the scenes getting the data from local storage since the fake api won't persist
-//     const existingCart = getLocalStoreMock();
-//
-//     await apiService.get(ShoppingCartEndpoints.GetUpdateCart);
-//
-//     return existingCart;
-//   },
-// };
