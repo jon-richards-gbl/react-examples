@@ -1,6 +1,6 @@
 import uniqBy from "lodash/uniqBy";
 
-import { ProductStub } from "~/products/types/products";
+import type { ProductStub } from "~/products/types/products";
 
 import { UserCart } from "../types/cart";
 

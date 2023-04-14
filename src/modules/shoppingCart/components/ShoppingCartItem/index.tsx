@@ -2,7 +2,7 @@ import React from "react";
 
 import Card from "~/lib/components/Card";
 import { trimText } from "~/lib/helpers/text";
-import { useAppDispatch } from "~/lib/hooks";
+import { useAppDispatch } from "~/lib/hooks/state";
 import type { ProductStub } from "~/products/types/products";
 
 import "./styles.css";

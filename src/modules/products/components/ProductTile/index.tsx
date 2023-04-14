@@ -4,7 +4,7 @@ import { Link, generatePath } from "react-router-dom";
 
 import Card from "~/lib/components/Card";
 import { PageRoutes } from "~/lib/constants/pageRoutes";
-import { useAppDispatch, useAppSelector } from "~/lib/hooks";
+import { useAppDispatch, useAppSelector } from "~/lib/hooks/state";
 import { addToCart } from "~/shoppingCart/store/actions";
 import { selectItemIsInCart } from "~/shoppingCart/store/selectors";
 

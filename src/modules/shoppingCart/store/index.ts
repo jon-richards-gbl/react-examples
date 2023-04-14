@@ -1,36 +1,72 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import {
+  /*PayloadAction, */
+  createSlice,
+} from "@reduxjs/toolkit";
+
+import {
+  setDataPending,
+  setDataRejected,
+  setDataResult,
+} from "~/lib/helpers/store";
+import {
+  addToCart,
+  fetchCart,
+  removeFromCart,
+} from "~/shoppingCart/store/actions";
 
 // import uniqBy from "lodash/uniqBy";
-import type { ProductStub } from "~/products/types/products";
-
+// import type { ProductStub } from "~/products/types/products";
 import { createInitialShoppingCartState } from "./state";
 
 const shoppingCartSlice = createSlice({
   name: "shoppingCart",
   initialState: createInitialShoppingCartState(),
   reducers: {
-    // addToCart(state, action: PayloadAction<ProductStub>) {
-    //   state.items = uniqBy([...state.items, action.payload], "id");
+    // updateCartPending(state) {
+    //   state.isLoading = true;
     // },
-    // removeFromCart(state, action: PayloadAction<ProductStub>) {
-    //   state.items = [
-    //     ...state.items.filter((item) => item.id !== action.payload.id),
-    //   ];
+    // updateCardResolved(state, action: PayloadAction<ProductStub[]>) {
+    //   state.isLoading = false;
+    //   state.items = action.payload;
     // },
+  },
+  extraReducers: (builder) => {
+    // addToCart
+    builder.addCase(addToCart.pending, (state) => {
+      state.items = setDataPending(state.items);
+    });
+    builder.addCase(addToCart.fulfilled, (state, action) => {
+      state.items = setDataResult(action.payload);
+    });
+    builder.addCase(addToCart.rejected, (state, action) => {
+      state.items = setDataRejected(state.items, action.error);
+    });
 
-    updateCartPending(state) {
-      state.isLoading = true;
-    },
+    // removeFromCart
+    builder.addCase(removeFromCart.pending, (state) => {
+      state.items = setDataPending(state.items);
+    });
+    builder.addCase(removeFromCart.fulfilled, (state, action) => {
+      state.items = setDataResult(action.payload);
+    });
+    builder.addCase(removeFromCart.rejected, (state, action) => {
+      state.items = setDataRejected(state.items, action.error);
+    });
 
-    updateCardResolved(state, action: PayloadAction<ProductStub[]>) {
-      state.isLoading = false;
-      state.items = action.payload;
-    },
+    // fetch cart
+    builder.addCase(fetchCart.pending, (state) => {
+      state.items = setDataPending(state.items);
+    });
+    builder.addCase(fetchCart.fulfilled, (state, action) => {
+      state.items = setDataResult(action.payload);
+    });
+    builder.addCase(fetchCart.rejected, (state, action) => {
+      state.items = setDataRejected(state.items, action.error);
+    });
   },
 });
 
-// export const { addToCart, removeFromCart } = shoppingCartSlice.actions;
-export const { updateCartPending, updateCardResolved } =
-  shoppingCartSlice.actions;
+// export const { updateCartPending, updateCardResolved } =
+//   shoppingCartSlice.actions;
 
 export default shoppingCartSlice.reducer;
